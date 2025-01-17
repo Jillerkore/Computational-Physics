@@ -1,13 +1,13 @@
 package me.dev.jillerkore;
 
-import me.dev.jillerkore.projectileMotion.ProjectileMotion;
-import me.dev.jillerkore.shm.Pendulum;
+import me.dev.jillerkore.pendulum.Pendulum;
+import me.dev.jillerkore.shm.SHM;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        new Pendulum();
+        new SHM();
 
     }
 

@@ -71,7 +71,7 @@ public class ProjectileMotion {
 
         double vel = Math.sqrt(Math.pow(midVelX, 2) + Math.pow(midVelY, 2));
 
-        // Find the unit vector anti-parallel to the velocity vector
+        // Find the unit vector antiparallel to the velocity vector
         double accX = - midVelX / vel;
         double accY = - midVelY / vel;
 

@@ -36,8 +36,8 @@ public class Plot extends Canvas {
     double xMin, xMax, yMin, yMax;	// the ranges of values for the plot to cover
     double xRange, yRange; 			// difference between min and max
     double xInterval, yInterval;	// grid spacing intervals
-    int plotWidth = 400;			// width of plot in pixels
-    int plotHeight = 400;			// height of plot in pixels
+    int plotWidth = 650;			// width of plot in pixels
+    int plotHeight = 650;			// height of plot in pixels
     Color pointColor = Color.red;	// color of plotted points (and lines), red by default
     int pointSize = 3;				// width of plot symbols, 3 pixels by default
     int pointShape = SQUARE;		// default point shape is a square
@@ -87,6 +87,10 @@ public class Plot extends Canvas {
         plotFrame.setLocation(400+20*plotCount,20*plotCount);	// put the window in the upper-right part of the screen
         plotFrame.setVisible(true);						// show the window!
         requestFocus();									// take focus away from the clear button
+    }
+
+    public void setLocation(int x, int y) {
+        plotFrame.setLocation(x, y);
     }
 
     /** Adds a new point to the plot. */
