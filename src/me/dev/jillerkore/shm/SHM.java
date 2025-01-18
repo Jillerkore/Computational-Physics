@@ -28,11 +28,11 @@ public class SHM {
     double a; // Net acceleration
     double v = 0; // Velocity
     double mass = 1;
-    double damp = 0.025;
+    double damp = 0;
 
     // Delta time related
     private long currentTime = 0;
-    private double deltaTime = 0;
+    private double delta = 0;
     private long time = 0;
     private Thread deltaThread;
     boolean continuePlotting = true;
@@ -47,18 +47,23 @@ public class SHM {
     private void initThread() {
         deltaThread = new Thread(() -> {
 
-            int fps = 30;
-            double timePerTick = (double) 1000000000 / fps;
+            int fps = 500;
+            long timePerTick = (long) 1000000000 / fps;
+//            delta = 0;
+            time = System.nanoTime();
 
             while(true) {
-
                 currentTime = System.nanoTime();
-                deltaTime += (int) ((currentTime - time) / timePerTick);
+                System.out.println(((currentTime - time) / timePerTick));
+                System.out.println("Delta before incrementing: " + delta);
+                System.out.println("Increment amount: " + ((double) (currentTime - time) / timePerTick));
+                delta += ((double) (currentTime - time) / timePerTick);
+                System.out.println("Delta after incrementing: " + delta);
                 time = currentTime;
 
-                if (deltaTime >= 1) {
+                if (delta >= 1) {
+                    delta--;
                     loop();
-                    deltaTime--;
                 }
             }
         });
@@ -67,7 +72,7 @@ public class SHM {
 
     private void initGraph() {
 
-        plot = new Plot("displacement vs time", 0, 200, 1, -100, 100, 1);
+        plot = new Plot("displacement vs time", 0, 400, 1, -200, 200, 1);
         plot.setLocation(0, 0);
 
         // Setting initial acceleration based on the displacement
